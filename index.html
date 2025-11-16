@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rest API Front end Example</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 20px;
+        }
+        button{
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        #result{
+            margin-top: 20px;
+            padding: 10px;
+            border: 10px solid #ccc;
+            width: 300px
+        }
+    </style>
+</head>
+<body>
+    <h2>Front end calling Rest API</h2>
+
+    <!-- Button To call API-->
+     <button onclick="callapi()">Call API</button>
+     <!-- callapi is simple function name , onclick event -->
+      <!-- div show result-->
+       <div id="result">API response will appear here .. </div>
+       <script>
+        // this fuction will run when button clicked 
+        function callapi(){
+            //fetch function to call api
+            fetch("http://localhost:3301/students")
+            //then fuction to handle response
+            .then(response => response.json())
+            //then  handle and display the data
+            .then(data =>{
+            document.getElementById("result").textContent="server says:" + JSON.stringify(data);
+            })
+             .catch(error =>{
+                document.getElementById("result").textContent="error:" +error;
+             });
+
+        }
+       </script>
+    
+</body>
+</html>
